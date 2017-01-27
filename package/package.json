@@ -1,0 +1,19 @@
+{
+  "name": "svel",
+  "version": "0.0.1",
+  "description": "Calculate scroll velocity",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/estrattonbailey/svel.git"
+  },
+  "author": "estrattonbailey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/estrattonbailey/svel/issues"
+  },
+  "homepage": "https://github.com/estrattonbailey/svel#readme"
+}
