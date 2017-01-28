@@ -1,17 +1,17 @@
-# micro-scroll-restoration
-Manage scroll position using native DOM APIs. Useful for SPAs.
+# scroll-restoration
+A tiny scroll management library that uses native DOM APIs.
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
 
 ## Install
 ```bash
-npm i micro-scroll-restoration --save
+npm i scroll-restoration --save
 ```
 
 ## Usage 
 By default, just importing the library will listen for `beforeunload` events, check for `scrollPosition` property on the window, and restore that position on page load.
 ```javascript
-import scroller from 'micro-scroll-restoration'
+import scroller from 'scroll-restoration'
 ```
 
 For SPAs, you'll want to save scroll position before new routes, and restore position when returning to previous routes:

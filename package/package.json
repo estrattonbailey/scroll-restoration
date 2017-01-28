@@ -1,7 +1,7 @@
 {
-  "name": "micro-scroll-restoration",
+  "name": "scroll-restoration",
   "version": "0.0.1",
-  "description": "Manage scroll position using native DOM APIs.",
+  "description": "A tiny scroll management library that uses native DOM APIs.",
   "main": "dist/index.js",
   "scripts": {
     "lint": "standard 'src/*.js'",
