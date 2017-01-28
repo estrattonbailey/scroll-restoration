@@ -1,6 +1,8 @@
 # svel
 Calculate velocity over an interval for scroll or resize events.
 
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
+
 ## Install
 ```bash
 npm i svel --save
