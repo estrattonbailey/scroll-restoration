@@ -1,6 +1,6 @@
 {
   "name": "svel",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Calculate velocity over an interval for scroll or resize events.",
   "main": "dist/index.js",
   "scripts": {
