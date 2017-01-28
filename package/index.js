@@ -1,26 +1,49 @@
-let time = 0
-let prevtime = 0
-let distance = 0
-let prevscroll = null
-let pool = []
+const scroll = y => window.scrollTo(0, y)
 
-export default (y, event = { timeStamp: 0 }, config = {}) => {
-  let total = 0
+const state = () => {
+  return history.state ? history.state.scrollPosition : 0
+}
 
-  if (!event.timeStamp || event.timeStamp === 0) return 0
+const save = () => {
+  window.history.replaceState({ 
+    scrollPosition: window.pageYOffset || window.scrollY 
+  }, '')
+}
 
-  time = event.timeStamp - prevtime
-  distance = Math.abs(y - prevscroll || 0)
-  prevscroll = y
-  prevtime = event.timeStamp
+const restore = (cb = null) => {
+  let pos = state()
 
-  pool.push(distance/(time * (1 / (config.interval || 100))))
-  if (pool.length > (config.pool || 10)) pool.shift()
+  pos ? (
+    cb ? (
+      cb(pos)
+    ) : (
+      scroll(pos)
+    )
+  ) : (
+    scroll(0)
+  )
+}
 
-  for (let i = 0; i < pool.length; i++) {
-    total = (pool[i] + total)
+const instance = {
+  get export() {
+    if (typeof window !== 'undefined') {
+      if ('scrollRestoration' in history){
+        history.scrollRestoration = 'manual'
 
-    return total / (i + 1)
+        scroll(state())
+
+        window.onbeforeunload = save
+      }
+
+      return {
+        save,
+        restore,
+        state,
+      }
+    }
+
+    return {}
   }
 }
 
+export default instance.export

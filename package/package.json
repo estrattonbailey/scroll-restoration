@@ -1,7 +1,7 @@
 {
-  "name": "svel",
-  "version": "0.1.1",
-  "description": "Calculate velocity over an interval for scroll or resize events.",
+  "name": "micro-scroll-restoration",
+  "version": "0.0.1",
+  "description": "Manage scroll position using native DOM APIs.",
   "main": "dist/index.js",
   "scripts": {
     "lint": "standard 'src/*.js'",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/estrattonbailey/svel.git"
+    "url": "git+ssh://git@github.com/estrattonbailey/micro-scroll-restoration.git"
   },
   "author": "estrattonbailey",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/estrattonbailey/svel/issues"
+    "url": "https://github.com/estrattonbailey/micro-scroll-restoration/issues"
   },
-  "homepage": "https://github.com/estrattonbailey/svel#readme",
+  "homepage": "https://github.com/estrattonbailey/micro-scroll-restoration#readme",
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-preset-babili": "0.0.10",

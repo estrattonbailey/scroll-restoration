@@ -1,46 +1,39 @@
-# svel
-Calculate velocity over an interval for scroll or resize events.
+# micro-scroll-restoration
+Manage scroll position using native DOM APIs. Useful for SPAs.
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
 
 ## Install
 ```bash
-npm i svel --save
+npm i micro-scroll-restoration --save
 ```
 
 ## Usage 
-### svel(scrollY, scrollEvent[, config])
-Where `scrollY` is `window.scrollY || window.pageYOffset`, `scrollEvent` is the native event emitted by `window.onscroll`, and `config` is an optional config object. Default config: `{ pool: 10, interval: 100 }`.
-
-Basic example:
+By default, just importing the library will listen for `beforeunload` events, check for `scrollPosition` property on the window, and restore that position on page load.
 ```javascript
-import svel from 'svel'
+import scroller from 'micro-scroll-restoration'
+```
 
-window.addEventListener('scroll', event => {
-  const speed = svel(window.scrollY, event)
+For SPAs, you'll want to save scroll position before new routes, and restore position when returning to previous routes:
+```javascript
+// new route
+scroller.save()
 
-  console.log(speed > 50 ? 'fast!' : 'slow')
+// popstate, return to previous route
+scroller.restore()
+```
+
+Optionally, `restore()` can accept a callback as it's first and only parameter. If provided, the callback will be fired with the `scrollPosition` property, and you can do what you will with it. Use this for animated scrolling, etc.
+```javascript
+scroller.restore(pos => {
+  // handle scrolling
 })
 ```
 
-Ideally you would use a more performant solution that uses a debounce or `requestAnimationFrame`:
+The `scrollPosition` value is stored on the `history` object i.e. `history.state.scrollPosition`. For convenience, you can also call:
 ```javascript
-import srraf from 'srraf'
-import svel from 'svel'
-
-srrar.scroll.use(({ curr }, event) => {
-  const speed = svel(curr, event)
-
-  console.log(speed)
-})
+scroller.state() // returns scrollPosition
 ```
-
-## How it works
-This library is probably overlay simplistic for some use cases. 
-
-It tracks average speed from a given number of ticks (`pool`) and over a specified time interval in milliseconds (`interval`). It returns this average at each tick, and then you can do what you want with the speed value.
-
-Given the defaults for `pool` and `interval` (10 and 100, respectively), you'll get the average speed in `pixels/100ms` over the last 10 ticks. To get `pixels/second`, you would change `config.interval` to `1000`.
 
 ## Example
 To run the example, clone this repo, then:
