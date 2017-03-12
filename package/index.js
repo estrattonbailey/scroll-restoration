@@ -4,46 +4,35 @@ const state = () => {
   return history.state ? history.state.scrollPosition : 0
 }
 
-const save = () => {
+const save = (y = null) => {
   window.history.replaceState({ 
-    scrollPosition: window.pageYOffset || window.scrollY 
+    scrollPosition: y || window.pageYOffset || window.scrollY 
   }, '')
 }
 
 const restore = (cb = null) => {
-  let pos = state()
+  const pos = state()
 
-  pos ? (
-    cb ? (
-      cb(pos)
-    ) : (
-      scroll(pos)
-    )
+  cb ? (
+    cb(pos)
   ) : (
-    scroll(0)
+    scroll(pos)
   )
 }
 
-const instance = {
-  get export() {
-    if (typeof window !== 'undefined') {
-      if ('scrollRestoration' in history){
-        history.scrollRestoration = 'manual'
+const init = () => {
+  if ('scrollRestoration' in history){
+    history.scrollRestoration = 'manual'
 
-        scroll(state())
+    scroll(state())
 
-        window.onbeforeunload = save
-      }
-
-      return {
-        save,
-        restore,
-        state,
-      }
-    }
-
-    return {}
+    window.onbeforeunload = e => save()
   }
 }
 
-export default instance.export
+export default typeof window !== 'undefined' ? {
+  init,
+  save,
+  restore,
+  state,
+} : {}

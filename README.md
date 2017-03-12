@@ -1,5 +1,5 @@
 # scroll-restoration
-A tiny scroll management library that uses native DOM APIs.
+A tiny scroll management library that uses native DOM APIs, **~372 bytes**.
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
 
@@ -9,9 +9,11 @@ npm i scroll-restoration --save
 ```
 
 ## Usage 
-By default, just importing the library will listen for `beforeunload` events, check for `scrollPosition` property on the window, and restore that position on page load.
+Import, then call `scroller.init()`. This will listen for `beforeunload` events, check for `scrollPosition` property on the window, and restore that position on page load.
 ```javascript
 import scroller from 'scroll-restoration'
+
+scroller.init()
 ```
 
 For SPAs, you'll want to save scroll position before new routes, and restore position when returning to previous routes:
@@ -28,6 +30,11 @@ Optionally, `restore()` can accept a callback as it's first and only parameter. 
 scroller.restore(pos => {
   // handle scrolling
 })
+```
+
+The `save()` method also accepts an optional param, `y`, which is a scroll position (in px).
+```javascript
+scroller.save(365)
 ```
 
 The `scrollPosition` value is stored on the `history` object i.e. `history.state.scrollPosition`. For convenience, you can also call:
