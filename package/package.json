@@ -1,6 +1,6 @@
 {
   "name": "scroll-restoration",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A tiny scroll management library that uses native DOM APIs.",
   "main": "dist/index.js",
   "scripts": {
