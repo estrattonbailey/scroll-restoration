@@ -5,7 +5,8 @@ const state = () => {
 }
 
 const save = (y = null) => {
-  window.history.replaceState({ 
+  window.history.replaceState({
+    ...window.history.state,
     scrollPosition: y || window.pageYOffset || window.scrollY 
   }, '')
 }
