@@ -1,13 +1,11 @@
 const scroll = y => window.scrollTo(0, y)
 
-const state = () => {
-  return history.state ? history.state.scrollPosition : 0
-}
+const state = () => history.state ? history.state.scrollPosition : 0
 
 const save = (y = null) => {
   history.replaceState({
     ...history.state,
-    scrollPosition: y || pageYOffset || scrollY 
+    scrollPosition: y || pageYOffset || scrollY
   }, '')
 }
 
