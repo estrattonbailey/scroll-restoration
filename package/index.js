@@ -5,9 +5,9 @@ const state = () => {
 }
 
 const save = (y = null) => {
-  window.history.replaceState({
-    ...window.history.state,
-    scrollPosition: y || window.pageYOffset || window.scrollY 
+  history.replaceState({
+    ...history.state,
+    scrollPosition: y || pageYOffset || scrollY 
   }, '')
 }
 
@@ -27,7 +27,7 @@ const init = () => {
 
     scroll(state())
 
-    window.onbeforeunload = e => save()
+    onbeforeunload = e => save()
   }
 }
 
